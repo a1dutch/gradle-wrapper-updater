@@ -1,4 +1,4 @@
-package uk.co.a1dutch.gradle.gradlewrapperupdater;
+package uk.co.a1dutch.gradle.updater;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

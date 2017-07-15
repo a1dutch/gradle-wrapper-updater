@@ -23,6 +23,8 @@ repositories {
 
 
 dependencies {
+    compileOnly("org.projectlombok:lombok")
+    compile('org.apache.commons:commons-lang3:3.5')
 	compile('org.springframework.boot:spring-boot-starter-actuator')
 	compile('org.springframework.boot:spring-boot-actuator-docs')
 	compile('org.springframework.boot:spring-boot-starter-web')
