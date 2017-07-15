@@ -1,0 +1,15 @@
+:global(.ui.segment).stripe {
+  padding: 4em 0em;
+}
+
+:global(h1.ui.header).error {
+    font-size: 18em;
+}
+
+:global(h2.ui.header).description {
+    font-size: 4em;
+}
+
+:global(h2.ui.header).info {
+    font-size: 2em;
+}
