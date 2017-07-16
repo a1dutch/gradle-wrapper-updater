@@ -10,9 +10,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import uk.co.a1dutch.gradle.updater.service.RepositoryService;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = RepositoriesController.class)
@@ -20,6 +22,9 @@ public class AuthenticationInterceptorTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @MockBean
+    private RepositoryService repositoryService;
 
     @Test
     public void requires_token() throws Exception {
