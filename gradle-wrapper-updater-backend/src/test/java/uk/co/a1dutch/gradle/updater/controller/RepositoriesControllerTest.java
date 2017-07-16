@@ -16,7 +16,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import uk.co.a1dutch.gradle.updater.service.Repository;
+import uk.co.a1dutch.gradle.updater.service.RepositoryDto;
 import uk.co.a1dutch.gradle.updater.service.RepositoryService;
 
 @RunWith(SpringRunner.class)
@@ -32,8 +32,8 @@ public class RepositoriesControllerTest {
     @Test
     public void list_repositories() throws Exception {
         when(repositoriesService.findAllRepositories())
-            .thenReturn(Arrays.asList(Repository.builder().id(1).name("test").build(),
-                Repository.builder().id(2).name("tester").build()));
+            .thenReturn(Arrays.asList(RepositoryDto.builder().id(1).name("test").build(),
+                RepositoryDto.builder().id(2).name("tester").build()));
 
         mockMvc.perform(get("/api/repositories")
             .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE).header("Authorization", "token"))

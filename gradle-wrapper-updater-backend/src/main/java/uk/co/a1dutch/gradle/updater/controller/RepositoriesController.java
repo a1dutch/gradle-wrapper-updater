@@ -6,7 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import uk.co.a1dutch.gradle.updater.service.Repository;
+import uk.co.a1dutch.gradle.updater.service.RepositoryDto;
 import uk.co.a1dutch.gradle.updater.service.RepositoryService;
 
 @RestController
@@ -16,7 +16,7 @@ public class RepositoriesController {
     private RepositoryService repositoriesService;
 
     @GetMapping(name = "/api/repositories", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Repository>> repositories() {
+    public ResponseEntity<List<RepositoryDto>> repositories() {
         return ResponseEntity.ok(repositoriesService.findAllRepositories());
     }
 

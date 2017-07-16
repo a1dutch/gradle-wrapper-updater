@@ -20,28 +20,34 @@ public class RepositoryService {
         this.restTemplate = restTemplate;
     }
 
-    public List<Repository> findAllRepositories() {
-        List<Repository> repositories = new ArrayList<>();
+    public List<RepositoryDto> findAllRepositories() {
+        List<RepositoryDto> repositories = new ArrayList<>();
 
         logger.info("finding user repositories");
-        for (Repository repository : restTemplate.getForObject(endpoint("user/repos"), Repository[].class)) {
-            repositories.add(repository);
-        }
+        addRepositories(repositories, null);
 
         logger.info("finding user organisations");
         Organisation[] organisations = restTemplate.getForObject(endpoint("user/orgs"), Organisation[].class);
 
         logger.info("finding user organisations repositories");
         for (Organisation organisation : organisations) {
-            String endpoint = endpoint("orgs/" + organisation.getName() + "/repos");
-
             logger.info("finding organisations repositories for {}", organisation.getName());
-            for (Repository repository : restTemplate.getForObject(endpoint, Repository[].class)) {
-                repositories.add(repository);
-            }
+            addRepositories(repositories, organisation.getName());
         }
 
         return repositories;
+    }
+
+    private void addRepositories(List<RepositoryDto> repositories, String organisation) {
+        String endooint = endpoint(organisation == null ? "user/repos" : "orgs/" + organisation + "/repos");
+        for (Repository repository : restTemplate.getForObject(endooint, Repository[].class)) {
+            RepositoryDto repositoryDto = RepositoryDto.builder()
+                .id(repository.getId())
+                .organisation(organisation)
+                .name(repository.getName())
+                .build();
+            repositories.add(repositoryDto);
+        }
     }
 
     private String endpoint(String endpoint) {
