@@ -10,9 +10,7 @@ import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import uk.co.a1dutch.gradle.updater.controller.AuthenticationInterceptor;
 
 @Configuration
 public class WebConfiguration extends WebMvcConfigurerAdapter {
@@ -20,11 +18,6 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
     @Bean
     public ThreadLocal<String> authorisation() {
         return new ThreadLocal<>();
-    }
-
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(authenticationInterceptor(authorisation()));
     }
 
     @Bean
@@ -46,7 +39,4 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
         };
     }
 
-    private AuthenticationInterceptor authenticationInterceptor(ThreadLocal<String> authorisation) {
-        return new AuthenticationInterceptor(authorisation);
-    }
 }

@@ -15,7 +15,7 @@ public class RepositoriesController {
     @Autowired
     private RepositoryService repositoriesService;
 
-    @GetMapping(name = "/api/repositories", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/api/repositories", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<RepositoryDto>> repositories() {
         return ResponseEntity.ok(repositoriesService.findAllRepositories());
     }

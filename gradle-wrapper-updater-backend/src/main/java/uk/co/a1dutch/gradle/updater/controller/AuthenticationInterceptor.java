@@ -3,10 +3,8 @@ package uk.co.a1dutch.gradle.updater.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-@Component
 public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 
     private ThreadLocal<String> authorisation;
